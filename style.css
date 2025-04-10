@@ -403,8 +403,4 @@ body, html {
     .hero-text h1 {
         font-size: 9vw;
     }
-
-    .hero {
-        height: 99vh;
-    }
 }
