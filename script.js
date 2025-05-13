@@ -36,7 +36,10 @@ menuIcon.addEventListener('click', () => {
 // 2nd section entrance animations: ----------------------------------------
 const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && entry.target.classList.contains('images-container')) {
+            entry.target.setAttribute('type', 'move');
+            obs.unobserve(entry.target); // Optional: if you want it only once
+        } else if (entry.isIntersecting) {
             entry.target.classList.add('in-view');
             obs.unobserve(entry.target); // Optional: if you want it only once
         }
@@ -46,6 +49,22 @@ const observer = new IntersectionObserver((entries, obs) => {
 });
 
 document.querySelectorAll('.phone, .cta-buttons, .hero-heading').forEach(el => {
+    observer.observe(el);
+});
+// -------------------------------------------------------------------------
+
+// 3rd section entrance animations: ----------------------------------------
+document.querySelectorAll(
+    '.phone, .cta-buttons, .hero-heading, .features-heading, .feature-img'
+).forEach(el => {
+    observer.observe(el);
+});
+// -------------------------------------------------------------------------
+
+// 4th section entrance animations: ----------------------------------------
+document.querySelectorAll(
+    '.images-container'
+).forEach(el => {
     observer.observe(el);
 });
 // -------------------------------------------------------------------------
